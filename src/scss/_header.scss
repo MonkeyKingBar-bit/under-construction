@@ -1,0 +1,45 @@
+.header {
+  &__content {
+    margin-top: rem(60);
+    // display: flex;
+    // padding: 56px 8px 40px;
+    @media (max-width: $mobile) {
+      margin-top: rem(100);
+    }
+    @media (max-width: $mobileSmall) {
+      margin-top: rem(80);
+    }
+    // @media (max-width: $tablet) {
+    //   padding: 26px 8px 15px;
+    // }
+  }
+}
+.header__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(0px, -120%);
+  opacity: 0;
+  transition: all 0.8s ease 0s;
+  &._active {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+  @media (max-width: $mobileSmall) {
+    img {
+      height: 40px;
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+}
+
+.btn {
+  padding: 9px 40px;
+  border: 2px solid $darkBlue;
+  border-radius: 24px;
+  font-weight: 700;
+  width: 220px;
+  margin: 0 auto;
+  cursor: pointer;
+}
