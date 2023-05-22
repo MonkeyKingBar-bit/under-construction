@@ -1,0 +1,133 @@
+@use "sass:math";
+@import "base/mixins";
+
+@import url(https://fonts.googleapis.com/css?family=Poppins:regular,600,700);
+@import "fonts/fonts";
+
+$fontFamily: "Poppins";
+$fontFamilySecond: "SF Pro Display";
+$fontSize: rem(18);
+$mainColor: rgba(0, 0, 0, 0.8);
+$darkBlue: #162c4e;
+$red: #df2224;
+$gray: #777777;
+
+$minWidth: 320px;
+$maxWidth: 1920px;
+$maxWidthContainer: 840px;
+$containerPadding: 40px;
+$responsiveType: 1;
+$containerWidth: $maxWidthContainer + $containerPadding;
+
+$pc: em($containerWidth);
+$tablet: 991.98px;
+$mobile: 767.98px;
+$mobileSmall: 479.98px;
+
+.lock {
+  overflow: hidden;
+  touch-action: none;
+}
+
+.wrapper {
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+  text-align: center;
+  .img {
+    position: absolute;
+    width: auto;
+    object-fit: contain;
+  }
+  ._left {
+    left: 0;
+    height: 419px;
+    transform: translate(-100%, -100%);
+    opacity: 0;
+    transition: all 0.8s ease 0s;
+    &._active {
+      transform: translate(0px, 0px);
+      opacity: 1;
+      transition: all 0.8s ease 0.4s;
+    }
+    @media (max-width: 1200px) {
+      top: -13px;
+      height: 319px;
+    }
+    @media (max-width: $tablet) {
+      height: 221px;
+    }
+    @media (max-width: $mobileSmall) {
+      height: 155px;
+    }
+  }
+  ._right {
+    right: 0;
+    height: 327px;
+    transform: translate(100%, -100%);
+    opacity: 0;
+    transition: all 0.8s ease 0s;
+    &._active {
+      transform: translate(0px, 0px);
+      opacity: 1;
+      transition: all 0.8s ease 0.6s;
+    }
+    @media (max-width: $tablet) {
+      height: 278px;
+    }
+    @media (max-width: $mobileSmall) {
+      height: 217px;
+    }
+  }
+}
+
+@if ($responsiveType==1) {
+  [class*="__container"] {
+    @if ($maxWidthContainer>0) {
+      max-width: $maxWidthContainer;
+      box-sizing: content-box;
+      margin: 0 auto;
+    }
+    @if ($containerPadding>0) {
+      padding: 0 math.div($containerPadding, 2);
+    }
+  }
+} @else {
+  [class*="__container"] {
+    margin: 0 auto;
+    @if ($maxWidthContainer>0) {
+      max-width: $maxWidthContainer;
+      box-sizing: content-box;
+    } @else {
+      @if ($containerPadding>0) {
+        padding: 0 math.div($containerPadding, 2);
+      }
+    }
+    @media (max-width: $pc) {
+      max-width: rem(970);
+    }
+    @media (max-width: $tablet) {
+      max-width: rem(750);
+    }
+    @media (max-width: $mobile) {
+      max-width: none;
+      @if ($containerPadding>0 and $maxWidthContainer>0) {
+        padding: 0 math.div($containerPadding, 2);
+      }
+    }
+  }
+}
+
+@import "base/null";
+
+@import "common";
+@import "header";
+@import "footer";
